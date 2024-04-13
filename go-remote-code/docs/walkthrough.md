@@ -54,7 +54,7 @@ Com o retorno acima identificamos que não tem flag nesse arquivo mas nos dar po
 
 Primeiro passo crie um proxy reverse com ngrok
 
-![alt text](images/ngrock.png)
+![alt text](images/ngrok.png)
 
 Após subir o container coloque o seu ngrock no campo do shell com shell reverse para a port a do seu nc
 
