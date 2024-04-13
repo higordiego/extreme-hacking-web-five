@@ -9,6 +9,7 @@ RUN apt-get update && \
     git \
     nano \
     vim \
+    python3 \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
@@ -35,20 +36,32 @@ COPY . .
 # Compila o código Go
 RUN go build -o app
 
-# Remove o Dockerfile após a compilação
-RUN rm -f Dockerfile
-RUN rm -f go.mod
-RUN rm -f README.md
-RUN rm -f main.go
-
 # Define as permissões do arquivo app para o usuário extremehacking
 RUN chown extremehacking:extremehacking /home/extremehacking/app/app
 
 # Adiciona um arquivo somente leitura como root
 USER root
-RUN touch /root/flag_pwn.txt && chmod 400 /root/flag_pwn.txt
-RUN echo "Extreme{6630db853468e9c768a584981349e924}" > /root/flag_pwn.txt
+
+RUN chown -R extremehacking:extremehacking /home/extremehacking
+RUN chmod -R 755 /home/extremehacking
+RUN chmod -R +t /tmp
+
+# Remove o Dockerfile após a compilação
+RUN rm -f Dockerfile go.mod deploy.sh docker-compose.yml README.md main.go go.mod init.sh build.sh
+
+# Define as permissões de superusuário para o programa em Go
+RUN chown extremehacking:extremehacking /home/extremehacking/app/app
+RUN chmod +x /home/extremehacking/app/app
+
+RUN chmod 777 /home/extremehacking/go/bin
+
 
 USER extremehacking
+
+# Adiciona um arquivo somente legível pelo root
+RUN mkdir /home/extremehacking/public
+RUN touch /home/extremehacking/public/flag_pwn.txt
+RUN echo "Extreme{6630db853468e9c768a584981349e924}" > /home/extremehacking/public/flag_pwn.txt
+
 # Comando para iniciar o servidor SSH e o servidor Go quando o contêiner for executado
 CMD ./app

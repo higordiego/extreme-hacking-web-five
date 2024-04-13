@@ -22,6 +22,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	
 	output, err := executeCode(string(code))
 	if err != nil {
 		log.Println(err.Error())
@@ -29,6 +30,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println("estou aqui")
 	fmt.Fprintf(w, "\n%s", output)
 }
 

