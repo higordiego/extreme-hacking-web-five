@@ -1,7 +1,7 @@
 ``bash
 #!/usr/bin/env bash
 set -e
-echo "[+] Building <Prototype Pollution>"
+echo "[+] Building <Go Remote Code>"
 echo "[+] OS: Debian 12"
 echo "[+] Author: <Higor Diego>"
 echo "[+] Date: 11/04/2024"
@@ -23,8 +23,8 @@ apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 
 echo "[+] Pacotes necessários"
 cd /root
-docker build -t prototype-pollution . --no-cache
-docker run -d --restart=always -p8000:5000 -e PORT="5000" --hostname prototype-pollution --name prototype-pollution prototype-pollution
+docker build -t go-remote-code . --no-cache
+docker run -d --restart=always -p8000:5000 -e PORT="5000" --hostname go-remote-code --name go-remote-code go-remote-code
 
 
 echo "[+] Disabling IPv6"
